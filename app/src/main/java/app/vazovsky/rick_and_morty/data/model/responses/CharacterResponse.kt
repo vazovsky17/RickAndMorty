@@ -1,4 +1,4 @@
-package app.vazovsky.rick_and_morty.data.model
+package app.vazovsky.rick_and_morty.data.model.responses
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

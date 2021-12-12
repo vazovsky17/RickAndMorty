@@ -2,29 +2,99 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/sampleFragment">
+    app:startDestination="@id/characterListFragment">
+
 
     <fragment
-        android:id="@+id/sampleFragment"
-        android:name="app.vazovsky.rick_and_morty.presentation.list.ListFragment"
-        android:label="SampleFragment">
+        android:id="@+id/characterListFragment"
+        android:name="app.vazovsky.rick_and_morty.presentation.character.list.CharacterListFragment"
+        android:label="CharacterListFragment">
         <action
-            android:id="@+id/action_sampleFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            android:id="@+id/action_characterListFragment_to_characterDetailFragment"
+            app:destination="@id/characterDetailFragment">
+            <argument
+                android:name="characterID"
+                android:defaultValue="1"
+                app:argType="integer"
+                app:nullable="false" />
+        </action>
+        <action
+            android:id="@+id/action_characterListFragment_to_locationListFragment"
+            app:destination="@id/locationListFragment" />
+        <action
+            android:id="@+id/action_characterListFragment_to_episodeListFragment"
+            app:destination="@id/episodeListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterDetailFragment"
+        android:name="app.vazovsky.rick_and_morty.presentation.character.detail.CharacterDetailFragment"
+        android:label="CharacterDetailFragment">
         <argument
-            android:name="id"
+            android:name="characterID"
             android:defaultValue="1"
             app:argType="integer"
             app:nullable="false" />
     </fragment>
     <fragment
-        android:id="@+id/detailFragment"
-        android:name="app.vazovsky.rick_and_morty.presentation.detail.DetailFragment"
-        android:label="DetailFragment">
-        <argument
-            android:name="id"
-            android:defaultValue="1"
-            app:argType="integer" />
+        android:id="@+id/locationListFragment"
+        android:name="app.vazovsky.rick_and_morty.presentation.location.list.LocationListFragment"
+        android:label="LocationListFragment">
+        <action
+            android:id="@+id/action_locationListFragment_to_locationDetailFragment"
+            app:destination="@id/locationDetailFragment">
+            <argument
+                android:name="locationID"
+                android:defaultValue="1"
+                app:argType="integer"
+                app:nullable="false" />
+        </action>
+        <action
+            android:id="@+id/action_locationListFragment_to_characterListFragment"
+            app:destination="@id/characterListFragment" />
+        <action
+            android:id="@+id/action_locationListFragment_to_episodeListFragment"
+            app:destination="@id/episodeListFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/locationDetailFragment"
+        android:name="app.vazovsky.rick_and_morty.presentation.location.detail.LocationDetailFragment"
+        android:label="LocationDetailFragment">
+        <argument
+            android:name="locationID"
+            android:defaultValue="1"
+            app:argType="integer"
+            app:nullable="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/episodeListFragment"
+        android:name="app.vazovsky.rick_and_morty.presentation.episode.list.EpisodeListFragment"
+        android:label="EpisodeListFragment">
+        <action
+            android:id="@+id/action_episodeListFragment_to_episodeDetailFragment"
+            app:destination="@id/episodeDetailFragment">
+            <argument
+                android:name="episodeID"
+                android:defaultValue="1"
+                app:argType="integer"
+                app:nullable="false" />
+        </action>
+        <action
+            android:id="@+id/action_episodeListFragment_to_locationListFragment"
+            app:destination="@id/locationListFragment" />
+        <action
+            android:id="@+id/action_episodeListFragment_to_characterListFragment"
+            app:destination="@id/characterListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/episodeDetailFragment"
+        android:name="app.vazovsky.rick_and_morty.presentation.episode.detail.EpisodeDetailFragment"
+        android:label="EpisodeDetailFragment">
+        <argument
+            android:name="episodeID"
+            android:defaultValue="1"
+            app:argType="integer"
+            app:nullable="false" />
+    </fragment>
+
 
 </navigation>
