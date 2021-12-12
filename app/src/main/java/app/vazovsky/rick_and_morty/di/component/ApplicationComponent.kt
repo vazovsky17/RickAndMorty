@@ -5,6 +5,7 @@ import app.vazovsky.rick_and_morty.di.module.ActivityModule
 import app.vazovsky.rick_and_morty.di.module.ApiServiceModule
 import app.vazovsky.rick_and_morty.di.module.ApplicationModule
 import app.vazovsky.rick_and_morty.di.module.FragmentModule
+import app.vazovsky.rick_and_morty.di.module.RoomModule
 import app.vazovsky.rick_and_morty.di.module.ViewModelFactoryModule
 import app.vazovsky.rick_and_morty.di.module.ViewModelModule
 import dagger.BindsInstance
@@ -21,6 +22,7 @@ import javax.inject.Singleton
         ApiServiceModule::class,
         ApplicationModule::class,
         FragmentModule::class,
+        RoomModule::class,
         ViewModelFactoryModule::class,
         ViewModelModule::class
     ]

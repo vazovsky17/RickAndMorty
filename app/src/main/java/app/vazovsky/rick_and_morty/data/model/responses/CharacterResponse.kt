@@ -1,6 +1,9 @@
 package app.vazovsky.rick_and_morty.data.model.responses
 
 import android.os.Parcelable
+import androidx.room.Embedded
+import androidx.room.TypeConverters
+import app.vazovsky.rick_and_morty.data.db.entity.converters.OriginConverter
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
@@ -18,8 +21,8 @@ data class CharacterResponse(
     @SerializedName("species") val species: String?,
     @SerializedName("type") val type: String?,
     @SerializedName("gender") val gender: String?,
-    @SerializedName("origin") val originResponse: OriginResponse?,
-    @SerializedName("location") val location: LocationResponse?,
+    @SerializedName("origin") val origin: Origin?,
+    @SerializedName("location") val location: Location?,
     @SerializedName("image") val image: String?,
     @SerializedName("episode") val episode: List<String>,
     @SerializedName("url") val url: String?,
@@ -27,13 +30,13 @@ data class CharacterResponse(
 ) : Parcelable
 
 @Parcelize
-data class OriginResponse(
+data class Origin(
     @SerializedName("name") val name: String?,
     @SerializedName("url") val url: String?,
 ) : Parcelable
 
 @Parcelize
-data class LocationResponse(
+data class Location(
     @SerializedName("name") val name: String?,
     @SerializedName("url") val url: String?,
 ) : Parcelable

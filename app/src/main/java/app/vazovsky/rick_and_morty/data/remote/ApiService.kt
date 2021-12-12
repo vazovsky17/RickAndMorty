@@ -2,7 +2,7 @@ package app.vazovsky.rick_and_morty.data.remote
 
 import app.vazovsky.rick_and_morty.data.model.responses.CharacterResponse
 import app.vazovsky.rick_and_morty.data.model.responses.EpisodeResponse
-import app.vazovsky.rick_and_morty.data.model.responses.LocationResponse
+import app.vazovsky.rick_and_morty.data.model.responses.Location
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -24,6 +24,6 @@ interface ApiService {
     @GET("location")
     suspend fun getCountLocations(): Int
     @GET("location/{id}")
-    suspend fun getLocationById(@Path("id") id: Int): LocationResponse
+    suspend fun getLocationById(@Path("id") id: Int): Location
 
 }
