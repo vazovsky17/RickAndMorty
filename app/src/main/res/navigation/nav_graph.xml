@@ -6,9 +6,25 @@
 
     <fragment
         android:id="@+id/sampleFragment"
-        android:name="app.vazovsky.sampledagger.presentation.sample.SampleFragment"
+        android:name="app.vazovsky.rick_and_morty.presentation.list.ListFragment"
         android:label="SampleFragment">
-        <action android:id="@+id/actionSample" />
+        <action
+            android:id="@+id/action_sampleFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+        <argument
+            android:name="id"
+            android:defaultValue="1"
+            app:argType="integer"
+            app:nullable="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="app.vazovsky.rick_and_morty.presentation.detail.DetailFragment"
+        android:label="DetailFragment">
+        <argument
+            android:name="id"
+            android:defaultValue="1"
+            app:argType="integer" />
     </fragment>
 
 </navigation>
