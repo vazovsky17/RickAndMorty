@@ -23,7 +23,6 @@ data class CharacterEntity(
     @ColumnInfo(name = "origin") var origin: Origin = Origin("", ""),
     @ColumnInfo(name = "location") var location: Location = Location("", ""),
     @ColumnInfo(name = "image") var image: String = "",
-    @TypeConverters(ListStringConverter::class)
     @ColumnInfo(name = "episode") var episode: List<String> = listOf(),
     @ColumnInfo(name = "url") var url: String = "",
     @ColumnInfo(name = "created") var created: String = ""
