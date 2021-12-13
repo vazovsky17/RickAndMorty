@@ -18,5 +18,9 @@ class EpisodeViewHolder(
     private val binding by viewBinding(ItemEpisodeBinding::bind)
     fun bind(episode: EpisodeEntity) {
         itemView.setOnClickListener { onItemClick(episode) }
+        binding.apply {
+            textViewEpisodeIdAndName.text = "#${episode.id} ${episode.name}"
+            textViewEpisodeAirDate.text = episode.airDate
+        }
     }
 }

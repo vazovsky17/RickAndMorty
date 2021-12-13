@@ -41,10 +41,8 @@
             android:id="@+id/action_locationListFragment_to_locationDetailFragment"
             app:destination="@id/locationDetailFragment">
             <argument
-                android:name="locationID"
-                android:defaultValue="1"
-                app:argType="integer"
-                app:nullable="false" />
+                android:name="location"
+                app:argType="app.vazovsky.rick_and_morty.data.db.entity.LocationEntity" />
         </action>
         <action
             android:id="@+id/action_locationListFragment_to_characterListFragment"
@@ -58,10 +56,8 @@
         android:name="app.vazovsky.rick_and_morty.presentation.location.detail.LocationDetailFragment"
         android:label="LocationDetailFragment">
         <argument
-            android:name="locationID"
-            android:defaultValue="1"
-            app:argType="integer"
-            app:nullable="false" />
+            android:name="location"
+            app:argType="app.vazovsky.rick_and_morty.data.db.entity.LocationEntity" />
     </fragment>
     <fragment
         android:id="@+id/episodeListFragment"
@@ -71,10 +67,8 @@
             android:id="@+id/action_episodeListFragment_to_episodeDetailFragment"
             app:destination="@id/episodeDetailFragment">
             <argument
-                android:name="episodeID"
-                android:defaultValue="1"
-                app:argType="integer"
-                app:nullable="false" />
+                android:name="episode"
+                app:argType="app.vazovsky.rick_and_morty.data.db.entity.EpisodeEntity" />
         </action>
         <action
             android:id="@+id/action_episodeListFragment_to_locationListFragment"
@@ -88,10 +82,8 @@
         android:name="app.vazovsky.rick_and_morty.presentation.episode.detail.EpisodeDetailFragment"
         android:label="EpisodeDetailFragment">
         <argument
-            android:name="episodeID"
-            android:defaultValue="1"
-            app:argType="integer"
-            app:nullable="false" />
+            android:name="episode"
+            app:argType="app.vazovsky.rick_and_morty.data.db.entity.EpisodeEntity" />
     </fragment>
 
 

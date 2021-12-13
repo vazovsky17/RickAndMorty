@@ -1,7 +1,15 @@
 <resources>
     <string name="app_name">Rick and Morty</string>
+
+    <!-- Custom ViewFlipper -->
     <string name="text_view_error">Error</string>
     <string name="text_view_reload">Reload</string>
+
+    <!-- Image description -->
     <string name="image_view_character_image">Character image</string>
-    <string name="text_view_title_characters">Characters</string>
+
+    <!-- Toolbar Title -->
+    <string name="title_characters">Characters</string>
+    <string name="title_episodes">Episodes</string>
+    <string name="title_locations">Locations</string>
 </resources>

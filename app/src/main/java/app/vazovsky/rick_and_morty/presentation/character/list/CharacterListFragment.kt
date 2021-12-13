@@ -10,6 +10,7 @@ import app.vazovsky.rick_and_morty.data.db.entity.CharacterEntity
 import app.vazovsky.rick_and_morty.data.model.State
 import app.vazovsky.rick_and_morty.databinding.FragmentCharacterListBinding
 import app.vazovsky.rick_and_morty.presentation.CustomViewFlipper.Companion.STATE_DATA
+import app.vazovsky.rick_and_morty.presentation.ItemDecorator
 import app.vazovsky.rick_and_morty.presentation.base.BaseFragment
 import by.kirich1409.viewbindingdelegate.viewBinding
 import javax.inject.Inject
@@ -30,7 +31,15 @@ class CharacterListFragment : BaseFragment(R.layout.fragment_character_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         configureRecyclerView()
+        configureToolbar()
+        setViewModelObservers()
 
+        binding.customViewFlipper.setOnErrorClickListener {
+            viewModel.loadCharacters()
+        }
+    }
+
+    private fun setViewModelObservers() {
         viewModel.charactersLiveData.observe(viewLifecycleOwner) { list ->
             characterAdapter.setItems(list)
         }
@@ -43,17 +52,12 @@ class CharacterListFragment : BaseFragment(R.layout.fragment_character_list) {
                 }
             }
         }
-        binding.customViewFlipper.setOnErrorClickListener {
-            viewModel.loadCharacters()
-        }
     }
 
     private fun configureRecyclerView() {
         characterAdapter.onItemClick = { character ->
             findNavController().navigate(
-                CharacterListFragmentDirections.actionCharacterListFragmentToCharacterDetailFragment(
-                    character
-                )
+                CharacterListFragmentDirections.actionCharacterListFragmentToCharacterDetailFragment(character)
             )
         }
         binding.recyclerView.apply {
@@ -63,5 +67,26 @@ class CharacterListFragment : BaseFragment(R.layout.fragment_character_list) {
         }
     }
 
-
+    private fun configureToolbar() {
+        binding.toolbar.apply {
+            setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.menu_characters -> true
+                    R.id.menu_episodes -> {
+                        findNavController().navigate(
+                            CharacterListFragmentDirections.actionCharacterListFragmentToEpisodeListFragment()
+                        )
+                        true
+                    }
+                    R.id.menu_locations -> {
+                        findNavController().navigate(
+                            CharacterListFragmentDirections.actionCharacterListFragmentToLocationListFragment()
+                        )
+                        true
+                    }
+                    else -> false
+                }
+            }
+        }
+    }
 }

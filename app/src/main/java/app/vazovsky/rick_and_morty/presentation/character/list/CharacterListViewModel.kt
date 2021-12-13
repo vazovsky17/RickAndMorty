@@ -39,9 +39,7 @@ class CharacterListViewModel @Inject constructor(
                         }
                     }
                     _stateLiveData.postValue(State.Data(list))
-
                 }
-
             } catch (e: Exception) {
                 _stateLiveData.postValue(State.Error(e))
             }
