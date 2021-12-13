@@ -1,6 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="4dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/padding_16">
+
+        <ImageView
+            android:id="@+id/imageViewCharacterImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/image_view_character_image"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@mipmap/ic_launcher" />
+
+        <TextView
+            android:fontFamily="@font/roboto_mono"
+            android:id="@+id/textViewCharacterId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/imageViewCharacterImage"
+            app:layout_constraintTop_toTopOf="@id/imageViewCharacterImage"
+            tools:text="#1" />
+
+
+        <TextView
+            android:id="@+id/textViewCharacterName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_mono"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@id/imageViewCharacterImage"
+            app:layout_constraintStart_toStartOf="@id/imageViewCharacterImage"
+            app:layout_constraintTop_toBottomOf="@id/imageViewCharacterImage"
+            tools:text="Toxic Rick" />
+
+        <TextView
+            android:id="@+id/textViewCharacterStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_mono"
+            android:textAllCaps="true"
+            app:layout_constraintEnd_toEndOf="@id/imageViewCharacterImage"
+            app:layout_constraintStart_toStartOf="@id/imageViewCharacterImage"
+            app:layout_constraintTop_toBottomOf="@id/textViewCharacterName"
+            tools:text="Dead"
+            tools:textColor="@android:color/holo_red_dark" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

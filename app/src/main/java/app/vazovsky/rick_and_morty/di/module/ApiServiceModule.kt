@@ -12,7 +12,7 @@ import javax.inject.Singleton
 @Module
 class ApiServiceModule {
     companion object {
-        private const val BASE_URL = "https://rickandmortyapi.com/api"
+        private const val BASE_URL = "https://rickandmortyapi.com/api/"
     }
 
     @Singleton

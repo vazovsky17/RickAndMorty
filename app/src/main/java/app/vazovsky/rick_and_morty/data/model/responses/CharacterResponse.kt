@@ -8,8 +8,13 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class CharactersCount(
-    @SerializedName("count") val count: Int
+data class Characters(
+    @SerializedName("info") val info: Info?
+) : Parcelable
+
+@Parcelize
+data class Info(
+    @SerializedName("count") val count: Int?,
 ) : Parcelable
 
 

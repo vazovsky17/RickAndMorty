@@ -1,5 +1,6 @@
 package app.vazovsky.rick_and_morty.presentation.character.list
 
+import android.util.Log
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import app.vazovsky.rick_and_morty.data.db.entity.CharacterEntity
@@ -14,7 +15,11 @@ class CharacterAdapter @Inject constructor() : RecyclerView.Adapter<CharacterVie
         holder.bind(items[position])
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = CharacterViewHolder(parent, onItemClick)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
+        Log.d("LOL","создаю ViewHolder")
+        return CharacterViewHolder(parent, onItemClick)
+    }
+
     override fun getItemCount() = items.size
 
     fun setItems(items: List<CharacterEntity>) {

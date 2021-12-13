@@ -22,22 +22,4 @@ class RoomModule {
             AppDatabase.DATABASE_NAME
         ).build()
     }
-
-    @Singleton
-    @Provides
-    fun provideCharacterDao(appDatabase: AppDatabase): CharacterDao {
-        return appDatabase.getCharacterDao()
-    }
-
-    @Singleton
-    @Provides
-    fun provideEpisodesDao(appDatabase: AppDatabase): EpisodeDao {
-        return appDatabase.getEpisodeDao()
-    }
-
-    @Singleton
-    @Provides
-    fun provideLocationDao(appDatabase: AppDatabase): LocationDao {
-        return appDatabase.getLocationDao()
-    }
 }
