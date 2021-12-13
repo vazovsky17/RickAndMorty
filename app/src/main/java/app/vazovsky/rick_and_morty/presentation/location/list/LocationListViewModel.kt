@@ -16,9 +16,6 @@ import javax.inject.Inject
 class LocationListViewModel @Inject constructor(
     private val repository: LocationRepository
 ) : ViewModel() {
-    companion object {
-        const val MAX_LOCATION_ID = 126
-    }
 
     private val _stateLiveData = MutableLiveData<State<List<LocationEntity>>>()
     val stateLiveData: LiveData<State<List<LocationEntity>>> = _stateLiveData
@@ -31,12 +28,6 @@ class LocationListViewModel @Inject constructor(
             _stateLiveData.postValue(State.Loading())
             try {
                 repository.getAllLocations().collect { list ->
-                    if (list.size < MAX_LOCATION_ID) {
-                        for (id in (list.size + 1)..MAX_LOCATION_ID) {
-                            val location = repository.getLocationById(id).parseToLocationEntity()
-                            repository.insertLocation(location)
-                        }
-                    }
                     _stateLiveData.postValue(State.Data(list))
                 }
             } catch (e: Exception) {

@@ -2,7 +2,6 @@ package app.vazovsky.rick_and_morty.presentation.location.list
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import app.vazovsky.rick_and_morty.R
 import app.vazovsky.rick_and_morty.data.db.entity.LocationEntity
@@ -21,8 +20,6 @@ class LocationListFragment : BaseFragment(R.layout.fragment_location_list) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Toast.makeText(requireContext(), "Внимание! Первая загрузка данных может быть долгой. Ожидайте.", Toast.LENGTH_SHORT)
-            .show()
         viewModel.loadLocations()
         viewModel.subscribeToLocations(requireContext())
     }

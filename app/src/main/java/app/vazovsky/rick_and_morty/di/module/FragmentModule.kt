@@ -4,6 +4,7 @@ import app.vazovsky.rick_and_morty.presentation.character.detail.CharacterDetail
 import app.vazovsky.rick_and_morty.presentation.character.list.CharacterListFragment
 import app.vazovsky.rick_and_morty.presentation.episode.detail.EpisodeDetailFragment
 import app.vazovsky.rick_and_morty.presentation.episode.list.EpisodeListFragment
+import app.vazovsky.rick_and_morty.presentation.loading.LoadingFragment
 import app.vazovsky.rick_and_morty.presentation.location.detail.LocationDetailFragment
 import app.vazovsky.rick_and_morty.presentation.location.list.LocationListFragment
 import dagger.Module
@@ -11,6 +12,11 @@ import dagger.android.ContributesAndroidInjector
 
 @Module
 abstract class FragmentModule {
+
+    /** LOADING */
+    @ContributesAndroidInjector
+    abstract fun loadingFragment(): LoadingFragment
+
     /** CHARACTER */
     @ContributesAndroidInjector
     abstract fun characterDetailFragment(): CharacterDetailFragment

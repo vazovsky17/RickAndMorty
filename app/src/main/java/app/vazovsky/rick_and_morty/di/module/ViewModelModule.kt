@@ -6,6 +6,7 @@ import app.vazovsky.rick_and_morty.presentation.character.detail.CharacterDetail
 import app.vazovsky.rick_and_morty.presentation.character.list.CharacterListViewModel
 import app.vazovsky.rick_and_morty.presentation.episode.detail.EpisodeDetailViewModel
 import app.vazovsky.rick_and_morty.presentation.episode.list.EpisodeListViewModel
+import app.vazovsky.rick_and_morty.presentation.loading.LoadingViewModel
 import app.vazovsky.rick_and_morty.presentation.location.detail.LocationDetailViewModel
 import app.vazovsky.rick_and_morty.presentation.location.list.LocationListViewModel
 import dagger.Binds
@@ -14,6 +15,13 @@ import dagger.multibindings.IntoMap
 
 @Module(includes = [ViewModelFactoryModule::class])
 abstract class ViewModelModule {
+
+    /** LOADING */
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoadingViewModel::class)
+    abstract fun loadingViewModel(viewModel: LoadingViewModel): ViewModel
+
     /** CHARACTER */
     @Binds
     @IntoMap

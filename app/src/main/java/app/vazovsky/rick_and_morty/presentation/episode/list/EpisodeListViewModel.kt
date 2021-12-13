@@ -17,9 +17,6 @@ import javax.inject.Inject
 class EpisodeListViewModel @Inject constructor(
     private val repository: EpisodeRepository
 ) : ViewModel() {
-    companion object {
-        const val MAX_EPISODE_ID = 51
-    }
 
     private val _stateLiveData = MutableLiveData<State<List<EpisodeEntity>>>()
     val stateLiveData: LiveData<State<List<EpisodeEntity>>> = _stateLiveData
@@ -32,12 +29,6 @@ class EpisodeListViewModel @Inject constructor(
             _stateLiveData.postValue(State.Loading())
             try {
                 repository.getAllEpisodes().collect { list ->
-                    if (list.size < MAX_EPISODE_ID) {
-                        for (id in (list.size + 1)..MAX_EPISODE_ID) {
-                            val episode = repository.getEpisodeById(id).parseToEpisodeEntity()
-                            repository.insertEpisode(episode)
-                        }
-                    }
                     _stateLiveData.postValue(State.Data(list))
                 }
             } catch (e: Exception) {

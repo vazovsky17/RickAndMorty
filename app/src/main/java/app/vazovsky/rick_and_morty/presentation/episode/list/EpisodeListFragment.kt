@@ -21,8 +21,6 @@ class EpisodeListFragment : BaseFragment(R.layout.fragment_episode_list) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Toast.makeText(requireContext(), "Внимание! Первая загрузка данных может быть долгой. Ожидайте.", Toast.LENGTH_SHORT)
-            .show()
         viewModel.loadEpisodes()
         viewModel.subscribeToEpisodes(requireContext())
     }
