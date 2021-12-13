@@ -1,7 +1,7 @@
 package app.vazovsky.rick_and_morty.data.db.entity.converters
 
 import androidx.room.TypeConverter
-import app.vazovsky.rick_and_morty.data.model.responses.Origin
+import app.vazovsky.rick_and_morty.data.db.entity.Origin
 import com.google.gson.Gson
 
 class OriginConverter {

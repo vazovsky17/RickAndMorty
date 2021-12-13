@@ -1,6 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        app:elevation="0dp">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:contentScrim="@color/purple_500"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:titleEnabled="false">
+
+            <ImageView
+                android:id="@+id/imageViewToolbarBackground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true" />
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:navigationIcon="@drawable/ic_back" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/indent_16">
+
+
+            <TextView
+                android:id="@+id/textViewCharacterName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/aqua_green"
+                android:fontFamily="@font/roboto_mono"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                tools:text="Toxic Rick" />
+
+            <TextView
+                android:id="@+id/textViewCharacterId"
+                style="@style/RoundedTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/indent_8"
+                android:backgroundTint="@color/aqua_green"
+                tools:text="id: #361" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/indent_8">
+
+                <TextView
+                    android:id="@+id/textViewCharacterSpecies"
+                    style="@style/RoundedTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/melon"
+                    tools:text="species: humanoid" />
+
+                <TextView
+                    android:id="@+id/textViewCharacterStatus"
+                    style="@style/RoundedTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/indent_8"
+                    android:backgroundTint="@color/purple_wine"
+                    tools:text="status: dead" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textViewCharacterType"
+                style="@style/RoundedTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/scarlet"
+                tools:text="type: Rick's Toxic Side" />
+
+            <TextView
+                android:id="@+id/textViewCharacterGender"
+                style="@style/RoundedTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/mimosa"
+                tools:text="gender: male" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/indent_8">
+
+                <TextView
+                    android:id="@+id/textViewCharacterOrigin"
+                    style="@style/RoundedTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/lime_green"
+                    tools:text="origin: Alien Spa" />
+
+                <TextView
+                    android:id="@+id/textViewCharacterLocation"
+                    style="@style/RoundedTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/indent_8"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/chocolate_brown"
+                    tools:text="location: Earth" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/textViewCharacterCreated"
+                style="@style/RoundedTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/lime_green"
+                tools:text="created: " />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

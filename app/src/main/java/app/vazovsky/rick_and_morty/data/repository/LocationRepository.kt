@@ -2,7 +2,6 @@ package app.vazovsky.rick_and_morty.data.repository
 
 import app.vazovsky.rick_and_morty.data.db.AppDatabase
 import app.vazovsky.rick_and_morty.data.db.entity.LocationEntity
-import app.vazovsky.rick_and_morty.data.model.responses.Location
 import app.vazovsky.rick_and_morty.data.model.responses.LocationFullResponse
 import app.vazovsky.rick_and_morty.data.remote.ApiService
 import kotlinx.coroutines.flow.Flow

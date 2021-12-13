@@ -2,7 +2,6 @@ package app.vazovsky.rick_and_morty.presentation.character.list
 
 import android.content.Context
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -34,7 +33,7 @@ class CharacterListViewModel @Inject constructor(
             try {
                 repository.getAllCharacters().collect { list ->
                     if (list.size < MAX_CHARACTER_ID) {
-                        for (id in list.size..MAX_CHARACTER_ID) {
+                        for (id in (list.size + 1)..MAX_CHARACTER_ID) {
                             val character = repository.getCharacterById(id).parseToCharacterEntity()
                             repository.insertCharacter(character)
                         }

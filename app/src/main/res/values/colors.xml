@@ -7,4 +7,14 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Коллекция цветов для карточек TextView, именование по Pantone -->
+    <color name="aqua_green">#FF00B89F</color>
+    <color name="purple_wine">#FF8C3573</color>
+    <color name="scarlet">#FFBC2C3D</color>
+    <color name="mimosa">#FFF0C05A</color>
+    <color name="lime_green">#FF9FC131</color>
+    <color name="melon">#FFFE8863</color>
+    <color name="chocolate_brown">#FF4E403B</color>
+
 </resources>

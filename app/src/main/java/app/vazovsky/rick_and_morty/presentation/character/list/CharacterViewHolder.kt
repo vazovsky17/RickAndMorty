@@ -22,7 +22,6 @@ class CharacterViewHolder(
     private val binding by viewBinding(ItemCharacterBinding::bind)
     fun bind(character: CharacterEntity) {
         itemView.setOnClickListener { onItemClick(character) }
-        Log.d("LOL", "Перс: ${character.name}")
         binding.apply {
             Glide.with(itemView.context)
                 .asBitmap()

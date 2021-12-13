@@ -1,9 +1,9 @@
 package app.vazovsky.rick_and_morty.presentation.character.list
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import app.vazovsky.rick_and_morty.R
 import app.vazovsky.rick_and_morty.data.db.entity.CharacterEntity
@@ -39,7 +39,6 @@ class CharacterListFragment : BaseFragment(R.layout.fragment_character_list) {
                 customViewFlipper.setState(state)
                 if (customViewFlipper.displayedChild == STATE_DATA) {
                     val items = (state as State.Data<List<CharacterEntity>>).data
-                    Log.d("LOL", "Список во фрагменте: $items")
                     characterAdapter.setItems(items)
                 }
             }
@@ -51,7 +50,11 @@ class CharacterListFragment : BaseFragment(R.layout.fragment_character_list) {
 
     private fun configureRecyclerView() {
         characterAdapter.onItemClick = { character ->
-
+            findNavController().navigate(
+                CharacterListFragmentDirections.actionCharacterListFragmentToCharacterDetailFragment(
+                    character
+                )
+            )
         }
         binding.recyclerView.apply {
             addItemDecoration(ItemDecorator())

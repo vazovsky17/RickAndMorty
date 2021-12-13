@@ -13,10 +13,8 @@
             android:id="@+id/action_characterListFragment_to_characterDetailFragment"
             app:destination="@id/characterDetailFragment">
             <argument
-                android:name="characterID"
-                android:defaultValue="1"
-                app:argType="integer"
-                app:nullable="false" />
+                android:name="character"
+                app:argType="app.vazovsky.rick_and_morty.data.db.entity.CharacterEntity" />
         </action>
         <action
             android:id="@+id/action_characterListFragment_to_locationListFragment"
@@ -25,16 +23,16 @@
             android:id="@+id/action_characterListFragment_to_episodeListFragment"
             app:destination="@id/episodeListFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/characterDetailFragment"
         android:name="app.vazovsky.rick_and_morty.presentation.character.detail.CharacterDetailFragment"
         android:label="CharacterDetailFragment">
         <argument
-            android:name="characterID"
-            android:defaultValue="1"
-            app:argType="integer"
-            app:nullable="false" />
+            android:name="character"
+            app:argType="app.vazovsky.rick_and_morty.data.db.entity.CharacterEntity" />
     </fragment>
+
     <fragment
         android:id="@+id/locationListFragment"
         android:name="app.vazovsky.rick_and_morty.presentation.location.list.LocationListFragment"

@@ -16,7 +16,6 @@ class CharacterAdapter @Inject constructor() : RecyclerView.Adapter<CharacterVie
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
-        Log.d("LOL","создаю ViewHolder")
         return CharacterViewHolder(parent, onItemClick)
     }
 

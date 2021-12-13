@@ -2,7 +2,6 @@ package app.vazovsky.rick_and_morty.data.remote
 
 import app.vazovsky.rick_and_morty.data.model.responses.CharacterResponse
 import app.vazovsky.rick_and_morty.data.model.responses.EpisodeResponse
-import app.vazovsky.rick_and_morty.data.model.responses.Location
 import app.vazovsky.rick_and_morty.data.model.responses.LocationFullResponse
 import retrofit2.http.GET
 import retrofit2.http.Path

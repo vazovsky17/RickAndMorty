@@ -9,12 +9,12 @@ import app.vazovsky.rick_and_morty.data.db.dao.LocationDao
 import app.vazovsky.rick_and_morty.data.db.entity.CharacterEntity
 import app.vazovsky.rick_and_morty.data.db.entity.EpisodeEntity
 import app.vazovsky.rick_and_morty.data.db.entity.LocationEntity
-import app.vazovsky.rick_and_morty.data.db.entity.converters.ListStringConverter
+import app.vazovsky.rick_and_morty.data.db.entity.converters.ListIntConverter
 import app.vazovsky.rick_and_morty.data.db.entity.converters.LocationConverter
 import app.vazovsky.rick_and_morty.data.db.entity.converters.OriginConverter
 
 @TypeConverters(
-    ListStringConverter::class,
+    ListIntConverter::class,
     LocationConverter::class,
     OriginConverter::class,
 )
