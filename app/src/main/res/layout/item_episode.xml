@@ -29,6 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/indent_4"
+            android:fontFamily="@font/roboto_mono"
             tools:text="September 10, 2017" />
     </LinearLayout>
 

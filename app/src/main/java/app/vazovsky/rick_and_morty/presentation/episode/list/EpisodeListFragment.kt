@@ -71,7 +71,9 @@ class EpisodeListFragment : BaseFragment(R.layout.fragment_episode_list) {
             setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     R.id.menu_characters -> {
-                        findNavController().popBackStack()
+                        findNavController().navigate(
+                            EpisodeListFragmentDirections.actionEpisodeListFragmentToCharacterListFragment()
+                        )
                         true
                     }
                     R.id.menu_episodes -> true

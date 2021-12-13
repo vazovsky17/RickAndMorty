@@ -19,5 +19,9 @@ class LocationViewHolder(
     private val binding by viewBinding(ItemLocationBinding::bind)
     fun bind(location: LocationEntity) {
         itemView.setOnClickListener { onItemClick(location) }
+        binding.apply {
+            textViewLocationIdAndName.text = "#${location.id} ${location.name}"
+            textViewLocationType.text = location.type
+        }
     }
 }
