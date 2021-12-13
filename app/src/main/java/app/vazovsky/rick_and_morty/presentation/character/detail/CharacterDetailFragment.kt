@@ -39,6 +39,7 @@ class CharacterDetailFragment : BaseFragment(R.layout.fragment_character_detail)
             textViewCharacterGender.text = "gender: ${character.gender}"
             textViewCharacterOrigin.text = "origin:\n${character.origin.name}"
             textViewCharacterLocation.text = "location:\n${character.location.name}"
+            textViewCharacterEpisode.text = "episodes:\n${character.episode}"
             toolbar.setNavigationOnClickListener {
                 findNavController().popBackStack()
             }
