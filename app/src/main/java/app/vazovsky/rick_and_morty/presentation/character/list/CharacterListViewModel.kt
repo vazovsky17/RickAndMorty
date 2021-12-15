@@ -19,9 +19,6 @@ class CharacterListViewModel @Inject constructor(
     private val _stateLiveData = MutableLiveData<State<List<CharacterEntity>>>()
     val stateLiveData: LiveData<State<List<CharacterEntity>>> = _stateLiveData
 
-    private val _charactersLiveData = MutableLiveData<List<CharacterEntity>>()
-    val charactersLiveData: LiveData<List<CharacterEntity>> = _charactersLiveData
-
     fun loadCharacters() {
         viewModelScope.launch {
             _stateLiveData.postValue(State.Loading())
@@ -31,14 +28,6 @@ class CharacterListViewModel @Inject constructor(
                 }
             } catch (e: Exception) {
                 _stateLiveData.postValue(State.Error(e))
-            }
-        }
-    }
-
-    fun subscribeToCharacters(context: Context) {
-        viewModelScope.launch {
-            repository.getAllCharacters().collect {
-                _charactersLiveData.postValue(it)
             }
         }
     }

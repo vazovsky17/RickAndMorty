@@ -23,7 +23,6 @@ class CharacterListFragment : BaseFragment(R.layout.fragment_character_list) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.loadCharacters()
-        viewModel.subscribeToCharacters(requireContext())
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,18 +36,14 @@ class CharacterListFragment : BaseFragment(R.layout.fragment_character_list) {
         }
     }
 
-    private fun setViewModelObservers() {
-        viewModel.charactersLiveData.observe(viewLifecycleOwner) { list ->
-            characterAdapter.setItems(list)
-        }
+    private fun setViewModelObservers() = with(binding) {
         viewModel.stateLiveData.observe(viewLifecycleOwner) { state ->
-            binding.apply {
-                customViewFlipper.setState(state)
-                if (customViewFlipper.displayedChild == STATE_DATA) {
-                    val items = (state as State.Data<List<CharacterEntity>>).data
-                    characterAdapter.setItems(items)
-                }
+            customViewFlipper.setState(state)
+            if (customViewFlipper.displayedChild == STATE_DATA) {
+                val items = (state as State.Data<List<CharacterEntity>>).data
+                characterAdapter.setItems(items)
             }
+
         }
     }
 
@@ -65,25 +60,23 @@ class CharacterListFragment : BaseFragment(R.layout.fragment_character_list) {
         }
     }
 
-    private fun configureToolbar() {
-        binding.toolbar.apply {
-            setOnMenuItemClickListener { item ->
-                when (item.itemId) {
-                    R.id.menu_characters -> true
-                    R.id.menu_episodes -> {
-                        findNavController().navigate(
-                            CharacterListFragmentDirections.actionCharacterListFragmentToEpisodeListFragment()
-                        )
-                        true
-                    }
-                    R.id.menu_locations -> {
-                        findNavController().navigate(
-                            CharacterListFragmentDirections.actionCharacterListFragmentToLocationListFragment()
-                        )
-                        true
-                    }
-                    else -> false
+    private fun configureToolbar() = with(binding.toolbar) {
+        setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.menu_characters -> true
+                R.id.menu_episodes -> {
+                    findNavController().navigate(
+                        CharacterListFragmentDirections.actionCharacterListFragmentToEpisodeListFragment()
+                    )
+                    true
                 }
+                R.id.menu_locations -> {
+                    findNavController().navigate(
+                        CharacterListFragmentDirections.actionCharacterListFragmentToLocationListFragment()
+                    )
+                    true
+                }
+                else -> false
             }
         }
     }

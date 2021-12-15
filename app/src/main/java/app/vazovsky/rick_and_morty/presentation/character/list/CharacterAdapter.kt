@@ -15,10 +15,7 @@ class CharacterAdapter @Inject constructor() : RecyclerView.Adapter<CharacterVie
         holder.bind(items[position])
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
-        return CharacterViewHolder(parent, onItemClick)
-    }
-
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = CharacterViewHolder(parent, onItemClick)
     override fun getItemCount() = items.size
 
     fun setItems(items: List<CharacterEntity>) {

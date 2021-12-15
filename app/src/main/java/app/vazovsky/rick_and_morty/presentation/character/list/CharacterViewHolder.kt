@@ -17,8 +17,6 @@ class CharacterViewHolder(
 ) : RecyclerView.ViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.item_character, parent, false)
 ) {
-
-
     private val binding by viewBinding(ItemCharacterBinding::bind)
     fun bind(character: CharacterEntity) {
         itemView.setOnClickListener { onItemClick(character) }

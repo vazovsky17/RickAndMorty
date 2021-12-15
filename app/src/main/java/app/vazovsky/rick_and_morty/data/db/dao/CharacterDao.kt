@@ -16,6 +16,9 @@ interface CharacterDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCharacter(character: CharacterEntity)
 
+    @Query("SELECT * FROM $CHARACTER_TABLE_NAME WHERE id in (:ids)")
+    fun getCharactersByIds(ids: List<Int>): Flow<List<CharacterEntity>>
+
     @Query("SELECT * FROM $CHARACTER_TABLE_NAME")
     fun getAllCharacters(): Flow<List<CharacterEntity>>
 }

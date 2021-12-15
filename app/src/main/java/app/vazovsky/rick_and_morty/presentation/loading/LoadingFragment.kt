@@ -28,37 +28,48 @@ class LoadingFragment : BaseFragment(R.layout.fragment_loading) {
         }
     }
 
-    private fun setViewModelObservers() = with(viewModel) {
-        binding.apply {
-            characterProgressLiveData.observe(viewLifecycleOwner) { state ->
-                if (state is StateDownloadProgress.Progress) {
-                    progressBarCharacters.progress = state.progress
-                    textViewProgressCharacters.text = "Loading Characters ${state.progress}%"
-                } else {
-                    buttonReload.visibility = View.GONE
-                }
-                checkLoaded()
+    private fun setViewModelObservers() {
+        setCharactersObserver()
+        setEpisodesObserver()
+        setLocationsObservers()
+    }
+
+    private fun setCharactersObserver() = with(binding) {
+        viewModel.characterProgressLiveData.observe(viewLifecycleOwner) { state ->
+            if (state is StateDownloadProgress.Progress) {
+                progressBarCharacters.progress = state.progress
+                textViewProgressCharacters.text = "Loading Characters ${state.progress}%"
+            } else {
+                buttonReload.visibility = View.GONE
             }
-            episodeProgressLiveData.observe(viewLifecycleOwner) { state ->
-                if (state is StateDownloadProgress.Progress) {
-                    progressBarEpisodes.progress = state.progress
-                    textViewProgressEpisodes.text = "Loading Episodes ${state.progress}%"
-                } else {
-                    buttonReload.visibility = View.GONE
-                }
-                checkLoaded ()
-            }
-            locationProgressLiveData.observe(viewLifecycleOwner) { state ->
-                if (state is StateDownloadProgress.Progress) {
-                    progressBarLocations.progress = state.progress
-                    textViewProgressLocations.text = "Loading Locations ${state.progress}"
-                } else {
-                    buttonReload.visibility = View.GONE
-                }
-                checkLoaded()
-            }
+            checkLoaded()
         }
     }
+
+    private fun setEpisodesObserver() = with(binding) {
+        viewModel.episodeProgressLiveData.observe(viewLifecycleOwner) { state ->
+            if (state is StateDownloadProgress.Progress) {
+                progressBarEpisodes.progress = state.progress
+                textViewProgressEpisodes.text = "Loading Episodes ${state.progress}%"
+            } else {
+                buttonReload.visibility = View.GONE
+            }
+            checkLoaded()
+        }
+    }
+
+    private fun setLocationsObservers() = with(binding) {
+        viewModel.locationProgressLiveData.observe(viewLifecycleOwner) { state ->
+            if (state is StateDownloadProgress.Progress) {
+                progressBarLocations.progress = state.progress
+                textViewProgressLocations.text = "Loading Locations ${state.progress}"
+            } else {
+                buttonReload.visibility = View.GONE
+            }
+            checkLoaded()
+        }
+    }
+
 
     private fun checkLoaded() = with(binding) {
         if (progressBarCharacters.progress >= 100

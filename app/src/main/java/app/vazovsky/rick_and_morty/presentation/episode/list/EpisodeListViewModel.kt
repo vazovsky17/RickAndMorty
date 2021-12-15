@@ -5,9 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import app.vazovsky.rick_and_morty.data.db.entity.CharacterEntity
 import app.vazovsky.rick_and_morty.data.db.entity.EpisodeEntity
-import app.vazovsky.rick_and_morty.data.db.entity.parseToEpisodeEntity
 import app.vazovsky.rick_and_morty.data.model.State
 import app.vazovsky.rick_and_morty.data.repository.EpisodeRepository
 import kotlinx.coroutines.flow.collect

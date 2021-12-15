@@ -17,4 +17,5 @@ class EpisodeRepository @Inject constructor(
     }
 
     fun getAllEpisodes(): Flow<List<EpisodeEntity>> = appDatabase.getEpisodeDao().getAllEpisodes()
+    fun getEpisodesByIds(ids: List<Int>): Flow<List<EpisodeEntity>> = appDatabase.getEpisodeDao().getEpisodesByIds(ids)
 }
