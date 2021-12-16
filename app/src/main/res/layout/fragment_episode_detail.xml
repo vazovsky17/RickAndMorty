@@ -55,12 +55,27 @@
 
         <TextView
             android:id="@+id/textViewEpisodeCharacters"
-            style="@style/RoundedTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/indent_8"
-            android:backgroundTint="@color/melon"
-            tools:text="characters: 1,2,3" />
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto_mono"
+            android:text="characters:"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
+        <app.vazovsky.rick_and_morty.presentation.CustomViewFlipper
+            android:id="@+id/customViewFlipper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewCharacters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                tools:listitem="@layout/item_simple" />
+        </app.vazovsky.rick_and_morty.presentation.CustomViewFlipper>
     </LinearLayout>
 </LinearLayout>
