@@ -1,19 +1,17 @@
 package app.vazovsky.rick_and_morty.presentation.character.detail
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.vazovsky.rick_and_morty.data.db.entity.EpisodeEntity
 import app.vazovsky.rick_and_morty.data.db.entity.LocationEntity
-import app.vazovsky.rick_and_morty.data.db.entity.parseToLocationEntity
 import app.vazovsky.rick_and_morty.data.model.State
 import app.vazovsky.rick_and_morty.data.repository.EpisodeRepository
 import app.vazovsky.rick_and_morty.data.repository.LocationRepository
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlinx.coroutines.flow.collect
 
 class CharacterDetailViewModel @Inject constructor(
     private val episodeRepository: EpisodeRepository,

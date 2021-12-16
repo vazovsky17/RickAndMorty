@@ -13,6 +13,7 @@ import app.vazovsky.rick_and_morty.data.db.entity.LocationEntity
 import app.vazovsky.rick_and_morty.data.model.State
 import app.vazovsky.rick_and_morty.databinding.FragmentCharacterDetailBinding
 import app.vazovsky.rick_and_morty.presentation.CustomViewFlipper
+import app.vazovsky.rick_and_morty.presentation.CustomViewFlipper.Companion.STATE_DATA
 import app.vazovsky.rick_and_morty.presentation.ItemDecorator
 import app.vazovsky.rick_and_morty.presentation.base.BaseFragment
 import app.vazovsky.rick_and_morty.presentation.character.detail.CharacterDetailViewModel.Companion.LOCATION
@@ -55,7 +56,7 @@ class CharacterDetailFragment : BaseFragment(R.layout.fragment_character_detail)
     private fun setViewModelObservers() = with(binding) {
         viewModel.stateEpisodeLiveData.observe(viewLifecycleOwner) { state ->
             customViewFlipper.setState(state)
-            if (customViewFlipper.displayedChild == CustomViewFlipper.STATE_DATA) {
+            if (customViewFlipper.displayedChild == STATE_DATA) {
                 val items = (state as State.Data<List<EpisodeEntity>>).data
                 episodeAdapter.setItems(items)
             }
