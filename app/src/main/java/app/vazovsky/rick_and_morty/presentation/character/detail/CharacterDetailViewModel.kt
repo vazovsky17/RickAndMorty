@@ -48,35 +48,22 @@ class CharacterDetailViewModel @Inject constructor(
             val list = mutableListOf<LocationEntity?>(null, null)
             _stateLocationLiveData.postValue(State.Loading())
             try {
-                val list = mutableListOf<LocationEntity?>(null, null)
-                Log.d("LOL", list.toString())
                 //Ищем Origin
-                ids[ORIGIN]?.let { locationRepository.getLocationsByIds(it) }?.collect { origin ->
-                    Log.d("LOL", origin.toString())
+                ids[ORIGIN]?.let { locationRepository.getLocationsByIds(it) }?.let { origin ->
                     if (origin.isNotEmpty()) {
                         list[0] = origin[0]
                     }
-                    Log.d("LOL", list.toString())
                 }
-                _stateLocationLiveData.postValue(State.Data(list))
-                Log.d("LOL", list.toString())
                 //Ищем Location
-                ids[LOCATION]?.let { locationRepository.getLocationsByIds(it) }?.collect { location ->
+                ids[LOCATION]?.let { locationRepository.getLocationsByIds(it) }?.let { location ->
                     if (location.isNotEmpty()) {
                         list[1] = location[0]
                     }
-                    Log.d("LOL", list.toString())
-
                 }
-                Log.d("LOL", list.toString())
                 _stateLocationLiveData.postValue(State.Data(list))
-
             } catch (e: Exception) {
                 _stateLocationLiveData.postValue(State.Error(e))
-            } finally {
-                _stateLocationLiveData.postValue(State.Data(list))
             }
-
         }
     }
 }

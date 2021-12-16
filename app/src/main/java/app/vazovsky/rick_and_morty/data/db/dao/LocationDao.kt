@@ -18,7 +18,7 @@ interface LocationDao {
     suspend fun insertLocation(location: LocationEntity)
 
     @Query("SELECT * FROM $LOCATION_TABLE_NAME WHERE id == (:ids) LIMIT 1")
-    fun getLocationsByIds(ids: Int): Flow<List<LocationEntity>>
+    suspend fun getLocationsByIds(ids: Int): List<LocationEntity>
 
     @Query("SELECT * FROM $LOCATION_TABLE_NAME")
     fun getAllLocations(): Flow<List<LocationEntity>>

@@ -17,5 +17,5 @@ class LocationRepository @Inject constructor(
     }
 
     fun getAllLocations(): Flow<List<LocationEntity>> = appDatabase.getLocationDao().getAllLocations()
-    fun getLocationsByIds(ids: Int): Flow<List<LocationEntity>> = appDatabase.getLocationDao().getLocationsByIds(ids)
+    suspend fun getLocationsByIds(ids: Int): List<LocationEntity> = appDatabase.getLocationDao().getLocationsByIds(ids)
 }

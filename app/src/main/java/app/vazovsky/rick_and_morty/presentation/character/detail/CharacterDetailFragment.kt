@@ -29,7 +29,6 @@ class CharacterDetailFragment : BaseFragment(R.layout.fragment_character_detail)
     private val character by lazy { args.character }
 
     @Inject lateinit var episodeAdapter: CharacterEpisodeAdapter
-    private var listOfLocations = mutableListOf<LocationEntity?>(null, null)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,8 +62,21 @@ class CharacterDetailFragment : BaseFragment(R.layout.fragment_character_detail)
         }
         viewModel.stateLocationLiveData.observe(viewLifecycleOwner) { state ->
             if (state is State.Data<MutableList<LocationEntity?>>) {
-                Log.d("LOL", state.data.toString())
-                listOfLocations = state.data
+                textViewCharacterOrigin.setOnClickListener {
+                    if (state.data[0] != null) {
+                        findNavController().navigate(
+                            CharacterDetailFragmentDirections.actionCharacterDetailFragmentToLocationDetailFragment(state.data[0]!!)
+                        )
+                    }
+                }
+                textViewCharacterLocation.setOnClickListener {
+                    if (state.data[1] != null) {
+                        findNavController().navigate(
+                            CharacterDetailFragmentDirections.actionCharacterDetailFragmentToLocationDetailFragment(state.data[1]!!)
+                        )
+
+                    }
+                }
             } else if (state is State.Error) {
                 Log.d("LOL", state.error.message.toString())
             }
@@ -97,27 +109,9 @@ class CharacterDetailFragment : BaseFragment(R.layout.fragment_character_detail)
         textViewCharacterStatus.text = "status: ${character.status}"
         textViewCharacterType.text = "type: ${if (character.type.isEmpty()) "standard" else character.type}"
         textViewCharacterGender.text = "gender: ${character.gender}"
+        textViewCharacterOrigin.text = "origin: ${character.origin.name}"
+        textViewCharacterLocation.text = "location: ${character.location.name}"
 
-        textViewCharacterOrigin.apply {
-            text = "origin:\n${character.origin.name}"
-            setOnClickListener {
-                if (listOfLocations[0] != null) {
-                    findNavController().navigate(
-                        CharacterDetailFragmentDirections.actionCharacterDetailFragmentToLocationDetailFragment(listOfLocations[0]!!)
-                    )
-                }
-            }
-        }
-        textViewCharacterLocation.apply {
-            text = "location:\n${character.location.name}"
-            setOnClickListener {
-                if (listOfLocations[1] != null) {
-                    findNavController().navigate(
-                        CharacterDetailFragmentDirections.actionCharacterDetailFragmentToLocationDetailFragment(listOfLocations[1]!!)
-                    )
-                }
-            }
-        }
         toolbar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
