@@ -2,6 +2,7 @@ package app.vazovsky.rick_and_morty.presentation.location.list
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.widget.SearchView
 import androidx.navigation.fragment.findNavController
 import app.vazovsky.rick_and_morty.R
 import app.vazovsky.rick_and_morty.data.db.entity.LocationEntity
@@ -61,8 +62,8 @@ class LocationListFragment : BaseFragment(R.layout.fragment_location_list) {
 
     private fun configureToolbar() {
         binding.toolbar.apply {
-            setOnMenuItemClickListener { item ->
-                when (item.itemId) {
+            setOnMenuItemClickListener {
+                when (it.itemId) {
                     R.id.menu_characters -> {
                         findNavController().navigate(
                             LocationListFragmentDirections.actionLocationListFragmentToCharacterListFragment()
@@ -75,10 +76,28 @@ class LocationListFragment : BaseFragment(R.layout.fragment_location_list) {
                         )
                         true
                     }
+                    R.id.menu_search -> {
+                        searchCharacter(it.actionView as SearchView)
+                        true
+                    }
                     R.id.menu_locations -> true
                     else -> false
                 }
             }
         }
+    }
+
+    private fun searchCharacter(searchView: SearchView) {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                viewModel.searchLocations(query)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                viewModel.searchLocations(newText)
+                return false
+            }
+        })
     }
 }

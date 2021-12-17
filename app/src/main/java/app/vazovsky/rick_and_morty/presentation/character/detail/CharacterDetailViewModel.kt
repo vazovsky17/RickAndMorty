@@ -27,9 +27,8 @@ class CharacterDetailViewModel @Inject constructor(
         viewModelScope.launch {
             _stateEpisodeLiveData.postValue(State.Loading())
             try {
-                episodeRepository.getEpisodesByIds(ids).collect { list ->
-                    _stateEpisodeLiveData.postValue(State.Data(list))
-                }
+                val list = episodeRepository.getEpisodesByIds(ids)
+                _stateEpisodeLiveData.postValue(State.Data(list))
             } catch (e: Exception) {
                 _stateEpisodeLiveData.postValue(State.Error(e))
             }

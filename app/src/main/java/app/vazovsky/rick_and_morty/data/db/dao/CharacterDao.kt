@@ -18,12 +18,14 @@ interface CharacterDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCharacter(character: CharacterEntity)
 
+    @Query("SELECT * FROM $CHARACTER_TABLE_NAME WHERE $COLUMN_NAME LIKE  '%' || :search || '%'")
+    suspend fun searchCharacters(search: String): List<CharacterEntity>
+
     @Query("SELECT * FROM $CHARACTER_TABLE_NAME WHERE $COLUMN_ID in (:ids)")
-    fun getCharactersByIds(ids: List<Int>): Flow<List<CharacterEntity>>
+    suspend fun getCharactersByIds(ids: List<Int>): List<CharacterEntity>
 
     @Query("SELECT * FROM $CHARACTER_TABLE_NAME")
     fun getAllCharacters(): Flow<List<CharacterEntity>>
 
-    @Query("SELECT * FROM $CHARACTER_TABLE_NAME WHERE $COLUMN_NAME LIKE  '%' || :search || '%'")
-    fun searchCharacters(search: String): Flow<List<CharacterEntity>>
+
 }

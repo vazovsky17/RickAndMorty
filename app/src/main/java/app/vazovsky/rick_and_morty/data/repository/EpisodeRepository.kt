@@ -12,10 +12,10 @@ class EpisodeRepository @Inject constructor(
     private val appDatabase: AppDatabase
 ) {
     suspend fun getEpisodeById(id: Int): EpisodeResponse = apiService.getEpisodeById(id)
-    suspend fun insertEpisode(episode: EpisodeEntity) {
-        appDatabase.getEpisodeDao().insertEpisode(episode)
-    }
+
+    suspend fun insertEpisode(episode: EpisodeEntity) = appDatabase.getEpisodeDao().insertEpisode(episode)
+    suspend fun getEpisodesByIds(ids: List<Int>): List<EpisodeEntity> = appDatabase.getEpisodeDao().getEpisodesByIds(ids)
+    suspend fun searchEpisodes(search: String): List<EpisodeEntity> = appDatabase.getEpisodeDao().searchEpisodes(search)
 
     fun getAllEpisodes(): Flow<List<EpisodeEntity>> = appDatabase.getEpisodeDao().getAllEpisodes()
-    fun getEpisodesByIds(ids: List<Int>): Flow<List<EpisodeEntity>> = appDatabase.getEpisodeDao().getEpisodesByIds(ids)
 }

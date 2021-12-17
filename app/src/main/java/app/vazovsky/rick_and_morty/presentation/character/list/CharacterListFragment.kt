@@ -62,8 +62,8 @@ class CharacterListFragment : BaseFragment(R.layout.fragment_character_list) {
     }
 
     private fun configureToolbar() = with(binding.toolbar) {
-        setOnMenuItemClickListener { item ->
-            when (item.itemId) {
+        setOnMenuItemClickListener {
+            when (it.itemId) {
                 R.id.menu_characters -> true
                 R.id.menu_episodes -> {
                     findNavController().navigate(
@@ -78,7 +78,7 @@ class CharacterListFragment : BaseFragment(R.layout.fragment_character_list) {
                     true
                 }
                 R.id.menu_search -> {
-                    searchCharacter(item.actionView as SearchView)
+                    searchCharacter(it.actionView as SearchView)
                     true
                 }
                 else -> false

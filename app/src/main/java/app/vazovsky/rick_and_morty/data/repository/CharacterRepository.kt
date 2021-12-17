@@ -12,11 +12,10 @@ class CharacterRepository @Inject constructor(
     private val appDatabase: AppDatabase
 ) {
     suspend fun getCharacterById(id: Int): CharacterResponse = apiService.getCharacterById(id)
-    suspend fun insertCharacter(character: CharacterEntity) {
-        appDatabase.getCharacterDao().insertCharacter(character)
-    }
+
+    suspend fun insertCharacter(character: CharacterEntity) = appDatabase.getCharacterDao().insertCharacter(character)
+    suspend fun getCharactersByIds(ids: List<Int>): List<CharacterEntity> = appDatabase.getCharacterDao().getCharactersByIds(ids)
+    suspend fun searchCharacters(search: String): List<CharacterEntity> = appDatabase.getCharacterDao().searchCharacters(search)
 
     fun getAllCharacters(): Flow<List<CharacterEntity>> = appDatabase.getCharacterDao().getAllCharacters()
-    fun getCharactersByIds(ids: List<Int>): Flow<List<CharacterEntity>> = appDatabase.getCharacterDao().getCharactersByIds(ids)
-    fun searchCharacters(search: String): Flow<List<CharacterEntity>> = appDatabase.getCharacterDao().searchCharacters(search)
 }

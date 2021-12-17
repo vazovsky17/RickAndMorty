@@ -12,10 +12,10 @@ class LocationRepository @Inject constructor(
     private val appDatabase: AppDatabase
 ) {
     suspend fun getLocationById(id: Int): LocationFullResponse = apiService.getLocationById(id)
-    suspend fun insertLocation(location: LocationEntity) {
-        appDatabase.getLocationDao().insertLocation(location)
-    }
+
+    suspend fun insertLocation(location: LocationEntity) = appDatabase.getLocationDao().insertLocation(location)
+    suspend fun getLocationsByIds(ids: Int): List<LocationEntity> = appDatabase.getLocationDao().getLocationsByIds(ids)
+    suspend fun searchLocations(search: String): List<LocationEntity> = appDatabase.getLocationDao().searchLocations(search)
 
     fun getAllLocations(): Flow<List<LocationEntity>> = appDatabase.getLocationDao().getAllLocations()
-    suspend fun getLocationsByIds(ids: Int): List<LocationEntity> = appDatabase.getLocationDao().getLocationsByIds(ids)
 }

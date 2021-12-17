@@ -42,12 +42,11 @@ class CharacterListViewModel @Inject constructor(
     fun searchCharacters(search: String) {
         searchJob?.cancel()
         searchJob = CoroutineScope(Dispatchers.IO).launch {
-            delay(2000)
+            delay(500)
             _stateLiveData.postValue(State.Loading())
             try {
-                repository.searchCharacters(search).collect { list ->
-                    _stateLiveData.postValue(State.Data(list))
-                }
+                val list = repository.searchCharacters(search)
+                _stateLiveData.postValue(State.Data(list))
             } catch (e: Exception) {
                 _stateLiveData.postValue(State.Error(e))
             }
