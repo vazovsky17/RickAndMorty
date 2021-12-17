@@ -1,172 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="@dimen/indent_16">
+        android:layout_height="wrap_content"
+        app:elevation="0dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/roboto_mono"
-            android:text="@string/text_view_filters"
-            android:textAllCaps="true"
-            android:textColor="@color/black"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/textViewFilterStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/text_view_filter_status"
-            android:textSize="18sp" />
-
-        <app.vazovsky.rick_and_morty.presentation.CustomViewFlipper
-            android:id="@+id/customViewFlipperStatus"
+        <com.google.android.material.appbar.MaterialToolbar
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:title="Filters" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewFilterStatus"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/indent_16">
+
+            <app.vazovsky.rick_and_morty.presentation.CustomCheckboxGroup
+                android:id="@+id/checkboxGroupStatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:overScrollMode="never"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                app:check_title="Status" />
 
-        </app.vazovsky.rick_and_morty.presentation.CustomViewFlipper>
-
-        <TextView
-            android:id="@+id/textViewFilterSpecies"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/text_view_filter_species"
-            android:textSize="18sp" />
-
-        <app.vazovsky.rick_and_morty.presentation.CustomViewFlipper
-            android:id="@+id/customViewFlipperSpecies"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewFilterSpecies"
+            <app.vazovsky.rick_and_morty.presentation.CustomCheckboxGroup
+                android:id="@+id/checkboxGroupSpecies"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:overScrollMode="never"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-        </app.vazovsky.rick_and_morty.presentation.CustomViewFlipper>
+                app:check_title="Species" />
 
-        <TextView
-            android:id="@+id/textViewFilterType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/text_view_filter_type"
-            android:textSize="18sp" />
-
-        <app.vazovsky.rick_and_morty.presentation.CustomViewFlipper
-            android:id="@+id/customViewFlipperType"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewFilterType"
+            <app.vazovsky.rick_and_morty.presentation.CustomCheckboxGroup
+                android:id="@+id/checkboxGroupType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:overScrollMode="never"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-        </app.vazovsky.rick_and_morty.presentation.CustomViewFlipper>
+                app:check_title="Type" />
 
-        <TextView
-            android:id="@+id/textViewFilterGender"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/text_view_filter_gender"
-            android:textSize="18sp" />
-
-        <app.vazovsky.rick_and_morty.presentation.CustomViewFlipper
-            android:id="@+id/customViewFlipperGender"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewFilterGender"
+            <app.vazovsky.rick_and_morty.presentation.CustomCheckboxGroup
+                android:id="@+id/checkboxGroupGender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:overScrollMode="never"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-        </app.vazovsky.rick_and_morty.presentation.CustomViewFlipper>
+                app:check_title="Gender" />
 
-        <TextView
-            android:id="@+id/textViewFilterOrigin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/text_view_filter_origin"
-            android:textSize="18sp" />
-
-        <app.vazovsky.rick_and_morty.presentation.CustomViewFlipper
-            android:id="@+id/customViewFlipperOrigin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewFilterOrigin"
+            <app.vazovsky.rick_and_morty.presentation.CustomCheckboxGroup
+                android:id="@+id/checkboxGroupOrigin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:overScrollMode="never"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-        </app.vazovsky.rick_and_morty.presentation.CustomViewFlipper>
+                app:check_title="Origin" />
 
-        <TextView
-            android:id="@+id/textViewFilterLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/text_view_filter_location"
-            android:textSize="18sp" />
-
-        <app.vazovsky.rick_and_morty.presentation.CustomViewFlipper
-            android:id="@+id/customViewFlipperLocation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewFilterLocation"
+            <app.vazovsky.rick_and_morty.presentation.CustomCheckboxGroup
+                android:id="@+id/checkboxGroupLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:overScrollMode="never"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-        </app.vazovsky.rick_and_morty.presentation.CustomViewFlipper>
+                app:check_title="Location" />
 
-        <TextView
-            android:id="@+id/textViewFilterEpisodes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/text_view_filter_episodes"
-            android:textSize="18sp" />
-
-        <app.vazovsky.rick_and_morty.presentation.CustomViewFlipper
-            android:id="@+id/customViewFlipperEpisodes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewFilterEpisodes"
-                android:layout_width="match_parent"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonApply"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:overScrollMode="never" />
-        </app.vazovsky.rick_and_morty.presentation.CustomViewFlipper>
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto_mono"
+                android:text="@string/button_filter_apply" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonApply"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/roboto_mono"
-            android:text="@string/button_filter_apply" />
-
-    </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

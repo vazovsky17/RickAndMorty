@@ -1,17 +1,20 @@
 package app.vazovsky.rick_and_morty.presentation.character.filter
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import app.vazovsky.rick_and_morty.R
+import app.vazovsky.rick_and_morty.data.model.filter.Filter
+import app.vazovsky.rick_and_morty.data.model.filter.FilterList
 import app.vazovsky.rick_and_morty.data.model.State
+import app.vazovsky.rick_and_morty.data.model.filter.FilterLocation
 import app.vazovsky.rick_and_morty.databinding.FragmentCharacterFilterBinding
-import app.vazovsky.rick_and_morty.presentation.CustomViewFlipper
 import app.vazovsky.rick_and_morty.presentation.CustomViewFlipper.Companion.STATE_DATA
-import app.vazovsky.rick_and_morty.presentation.ItemDecorator
 import app.vazovsky.rick_and_morty.presentation.base.BaseFragment
+import app.vazovsky.rick_and_morty.presentation.character.list.CharacterListFragment.Companion.BUNDLE_FILTER
+import app.vazovsky.rick_and_morty.presentation.character.list.CharacterListFragment.Companion.RESULT_FILTER
 import by.kirich1409.viewbindingdelegate.viewBinding
 import javax.inject.Inject
 
@@ -23,9 +26,8 @@ class CharacterFilterFragment : BaseFragment(R.layout.fragment_character_filter)
     @Inject lateinit var speciesAdapter: FilterAdapter
     @Inject lateinit var typeAdapter: FilterAdapter
     @Inject lateinit var genderAdapter: FilterAdapter
-    @Inject lateinit var originAdapter: FilterAdapter
-    @Inject lateinit var locationAdapter: FilterAdapter
-    @Inject lateinit var episodesAdapter: FilterAdapter
+    @Inject lateinit var originAdapter: FilterLocationAdapter
+    @Inject lateinit var locationAdapter: FilterLocationAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,8 +43,32 @@ class CharacterFilterFragment : BaseFragment(R.layout.fragment_character_filter)
         configureRecyclerViews()
 
         binding.buttonApply.setOnClickListener {
+            getResults()
             findNavController().popBackStack()
         }
+    }
+
+    private fun getResults() {
+        val statusList = statusAdapter.getCheckedItems()
+        val speciesList = speciesAdapter.getCheckedItems()
+        val typeList = typeAdapter.getCheckedItems()
+        val genderList = genderAdapter.getCheckedItems()
+        val originList = originAdapter.getCheckedItems()
+        val locationList = locationAdapter.getCheckedItems()
+
+        val filterList = FilterList(
+            if (statusList.isEmpty()) statusAdapter.getAllItems() else statusList,
+            if (speciesList.isEmpty()) speciesAdapter.getAllItems() else speciesList,
+            if (typeList.isEmpty()) typeAdapter.getAllItems() else typeList,
+            if (genderList.isEmpty()) genderAdapter.getAllItems() else genderList,
+            if (originList.isEmpty()) originAdapter.getAllItems() else originList,
+            if (locationList.isEmpty()) locationAdapter.getAllItems() else locationList,
+        )
+        setFragmentResult(
+            RESULT_FILTER, bundleOf(
+                BUNDLE_FILTER to filterList
+            )
+        )
     }
 
     private fun configureRecyclerViews() {
@@ -52,89 +78,84 @@ class CharacterFilterFragment : BaseFragment(R.layout.fragment_character_filter)
         configureGender()
         configureOrigin()
         configureLocation()
-        configureEpisodes()
     }
 
-    private fun configureStatus() = with(binding) {
-        recyclerViewFilterStatus.adapter = statusAdapter
+    private fun configureStatus() = with(binding.checkboxGroupStatus) {
+        recyclerView.adapter = statusAdapter
         viewModel.stateStatusLiveData.observe(viewLifecycleOwner) { state ->
-            customViewFlipperStatus.apply {
+            customViewFlipper.apply {
                 setState(state)
                 if (displayedChild == STATE_DATA) {
-                    val items = (state as State.Data<List<String>>).data
+                    val items = (state as State.Data<List<Filter>>).data
                     statusAdapter.setItems(items)
                 }
             }
         }
     }
 
-    private fun configureSpecies() = with(binding) {
-        recyclerViewFilterSpecies.adapter = speciesAdapter
+    private fun configureSpecies() = with(binding.checkboxGroupSpecies) {
+        recyclerView.adapter = speciesAdapter
         viewModel.stateSpeciesLiveData.observe(viewLifecycleOwner) { state ->
-            customViewFlipperSpecies.apply {
+            customViewFlipper.apply {
                 setState(state)
                 if (displayedChild == STATE_DATA) {
-                    val items = (state as State.Data<List<String>>).data
+                    val items = (state as State.Data<List<Filter>>).data
                     speciesAdapter.setItems(items)
                 }
             }
         }
     }
 
-    private fun configureType() = with(binding) {
-        recyclerViewFilterType.adapter = typeAdapter
+    private fun configureType() = with(binding.checkboxGroupType) {
+        recyclerView.adapter = typeAdapter
         viewModel.stateTypeLiveData.observe(viewLifecycleOwner) { state ->
-            customViewFlipperType.apply {
+            customViewFlipper.apply {
                 setState(state)
                 if (displayedChild == STATE_DATA) {
-                    val items = (state as State.Data<List<String>>).data
+                    val items = (state as State.Data<List<Filter>>).data
                     typeAdapter.setItems(items)
                 }
             }
         }
     }
 
-    private fun configureGender() = with(binding) {
-        recyclerViewFilterGender.adapter = genderAdapter
+    private fun configureGender() = with(binding.checkboxGroupGender) {
+        recyclerView.adapter = genderAdapter
         viewModel.stateGenderLiveData.observe(viewLifecycleOwner) { state ->
-            customViewFlipperGender.apply {
+            customViewFlipper.apply {
                 setState(state)
                 if (displayedChild == STATE_DATA) {
-                    val items = (state as State.Data<List<String>>).data
+                    val items = (state as State.Data<List<Filter>>).data
                     genderAdapter.setItems(items)
                 }
             }
         }
     }
 
-    private fun configureOrigin() = with(binding) {
-        recyclerViewFilterOrigin.adapter = originAdapter
+    private fun configureOrigin() = with(binding.checkboxGroupOrigin) {
+        recyclerView.adapter = originAdapter
         viewModel.stateLocationLiveData.observe(viewLifecycleOwner) { state ->
-            customViewFlipperOrigin.apply {
+            customViewFlipper.apply {
                 setState(state)
                 if (displayedChild == STATE_DATA) {
-                    val items = (state as State.Data<List<String>>).data
+                    val items = (state as State.Data<List<FilterLocation>>).data
                     originAdapter.setItems(items)
                 }
             }
         }
     }
 
-    private fun configureLocation() = with(binding) {
-        recyclerViewFilterLocation.adapter = locationAdapter
+    private fun configureLocation() = with(binding.checkboxGroupLocation) {
+        recyclerView.adapter = locationAdapter
         viewModel.stateLocationLiveData.observe(viewLifecycleOwner) { state ->
-            customViewFlipperLocation.apply {
+            customViewFlipper.apply {
                 setState(state)
                 if (displayedChild == STATE_DATA) {
-                    val items = (state as State.Data<List<String>>).data
+                    val items = (state as State.Data<List<FilterLocation>>).data
                     locationAdapter.setItems(items)
                 }
             }
         }
     }
 
-    private fun configureEpisodes() = with(binding.recyclerViewFilterEpisodes) {
-        addItemDecoration(ItemDecorator())
-        adapter = episodesAdapter
-    }
 }

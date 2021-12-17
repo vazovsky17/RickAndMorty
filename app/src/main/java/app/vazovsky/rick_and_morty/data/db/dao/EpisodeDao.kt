@@ -26,5 +26,4 @@ interface EpisodeDao {
 
     @Query("SELECT * FROM $EPISODE_TABLE_NAME")
     fun getAllEpisodes(): Flow<List<EpisodeEntity>>
-
 }

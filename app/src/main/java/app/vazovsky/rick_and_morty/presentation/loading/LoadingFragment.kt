@@ -63,7 +63,7 @@ class LoadingFragment : BaseFragment(R.layout.fragment_loading) {
         viewModel.locationProgressLiveData.observe(viewLifecycleOwner) { state ->
             if (state is StateDownloadProgress.Progress) {
                 progressBarLocations.progress = state.progress
-                textViewProgressLocations.text = "Loading Locations ${state.progress}"
+                textViewProgressLocations.text = "Loading Locations ${state.progress}%"
             } else {
                 buttonReload.visibility = View.GONE
             }

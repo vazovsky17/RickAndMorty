@@ -1,5 +1,6 @@
 package app.vazovsky.rick_and_morty.data.repository
 
+
 import app.vazovsky.rick_and_morty.data.db.AppDatabase
 import app.vazovsky.rick_and_morty.data.db.entity.CharacterEntity
 import app.vazovsky.rick_and_morty.data.db.entity.Location
@@ -26,4 +27,12 @@ class CharacterRepository @Inject constructor(
     suspend fun getTypeList(): List<String> = appDatabase.getCharacterDao().getTypeList()
     suspend fun getGenderList(): List<String> = appDatabase.getCharacterDao().getGenderList()
     suspend fun getLocationList(): List<Location> = appDatabase.getCharacterDao().getLocationList()
+    suspend fun filterCharacters(
+        status: List<String>,
+        species: List<String>,
+        type: List<String>,
+        gender: List<String>,
+        origin: List<String>,
+        location: List<String>
+    ): List<CharacterEntity> = appDatabase.getCharacterDao().filterCharacters(status, species, type, gender, origin, location)
 }

@@ -20,6 +20,7 @@ interface CharacterDao {
         const val COLUMN_GENDER = "gender"
         const val COLUMN_ORIGIN = "origin"
         const val COLUMN_LOCATION = "location"
+        const val COLUMN_EPISODE = "episode"
     }
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -50,4 +51,13 @@ interface CharacterDao {
     @Query("SELECT $COLUMN_LOCATION FROM $CHARACTER_TABLE_NAME GROUP BY $COLUMN_LOCATION")
     suspend fun getLocationList(): List<Location>
 
+    @Query("SELECT * FROM $CHARACTER_TABLE_NAME WHERE $COLUMN_STATUS in (:status) AND $COLUMN_SPECIES in (:species) AND $COLUMN_TYPE in (:type)AND $COLUMN_GENDER in (:gender) AND $COLUMN_ORIGIN in (:origin) AND $COLUMN_LOCATION in (:location)")
+    suspend fun filterCharacters(
+        status: List<String>,
+        species: List<String>,
+        type: List<String>,
+        gender: List<String>,
+        origin: List<String>,
+        location: List<String>
+    ): List<CharacterEntity>
 }

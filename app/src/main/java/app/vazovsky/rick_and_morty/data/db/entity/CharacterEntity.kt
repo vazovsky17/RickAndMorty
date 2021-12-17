@@ -48,7 +48,7 @@ fun CharacterResponse.parseToCharacterEntity(): CharacterEntity {
         name = name ?: UNDEFINED_VALUE,
         status = status ?: UNDEFINED_VALUE,
         species = species ?: UNDEFINED_VALUE,
-        type = type ?: UNDEFINED_VALUE,
+        type = if (type == "" || type == " ") UNDEFINED_VALUE else type ?: UNDEFINED_VALUE,
         gender = gender ?: UNDEFINED_VALUE,
         origin = origin?.parseToLocation() ?: Location(0, UNDEFINED_VALUE),
         location = location?.parseToLocation() ?: Location(0, UNDEFINED_VALUE),

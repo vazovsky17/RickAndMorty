@@ -3,12 +3,13 @@ package app.vazovsky.rick_and_morty.presentation.character.list
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import app.vazovsky.rick_and_morty.R
 import app.vazovsky.rick_and_morty.data.db.entity.CharacterEntity
+import app.vazovsky.rick_and_morty.data.model.filter.FilterList
 import app.vazovsky.rick_and_morty.data.model.State
 import app.vazovsky.rick_and_morty.databinding.FragmentCharacterListBinding
 import app.vazovsky.rick_and_morty.presentation.CustomViewFlipper.Companion.STATE_DATA
@@ -20,10 +21,22 @@ import javax.inject.Inject
 class CharacterListFragment : BaseFragment(R.layout.fragment_character_list) {
     private val binding by viewBinding(FragmentCharacterListBinding::bind)
     private val viewModel: CharacterListViewModel by appViewModels()
+
+    companion object {
+        const val RESULT_FILTER = "result_filter"
+        const val BUNDLE_FILTER = "bundle_filter"
+    }
+
     @Inject lateinit var characterAdapter: CharacterAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        setFragmentResultListener(RESULT_FILTER) { _, bundle ->
+            val result = bundle.getParcelable<FilterList>(BUNDLE_FILTER) as FilterList
+            Log.d("LOL",result.originList.toString())
+            viewModel.filterCharacters(result)
+        }
         viewModel.loadCharacters()
     }
 
