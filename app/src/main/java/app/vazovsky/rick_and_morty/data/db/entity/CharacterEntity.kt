@@ -2,14 +2,12 @@ package app.vazovsky.rick_and_morty.data.db.entity
 
 import android.graphics.Color
 import android.os.Parcelable
-import android.util.Log
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import app.vazovsky.rick_and_morty.data.db.dao.CharacterDao
 import app.vazovsky.rick_and_morty.data.model.responses.CharacterResponse
 import app.vazovsky.rick_and_morty.data.model.responses.LocationResponse
-import app.vazovsky.rick_and_morty.data.model.responses.OriginResponse
 import kotlinx.parcelize.Parcelize
 
 const val UNDEFINED_VALUE = "undefined"
@@ -23,7 +21,7 @@ data class CharacterEntity(
     @ColumnInfo(name = "species") var species: String,
     @ColumnInfo(name = "type") var type: String,
     @ColumnInfo(name = "gender") var gender: String,
-    @ColumnInfo(name = "origin") var origin: Origin,
+    @ColumnInfo(name = "origin") var origin: Location,
     @ColumnInfo(name = "location") var location: Location,
     @ColumnInfo(name = "image") var image: String,
     @ColumnInfo(name = "episode") var episode: List<Int>
@@ -52,34 +50,13 @@ fun CharacterResponse.parseToCharacterEntity(): CharacterEntity {
         species = species ?: UNDEFINED_VALUE,
         type = type ?: UNDEFINED_VALUE,
         gender = gender ?: UNDEFINED_VALUE,
-        origin = origin?.parseToOrigin() ?: Origin(0, UNDEFINED_VALUE),
+        origin = origin?.parseToLocation() ?: Location(0, UNDEFINED_VALUE),
         location = location?.parseToLocation() ?: Location(0, UNDEFINED_VALUE),
         image = image ?: UNDEFINED_VALUE,
         episode = episode?.map { url ->
             val index = url.lastIndexOf("/")
             url.substring(index + 1).toInt()
         } ?: listOf()
-    )
-}
-
-@Parcelize
-data class Origin(
-    val id: Int,
-    val name: String,
-) : Parcelable
-
-fun OriginResponse.parseToOrigin(): Origin {
-    return Origin(
-        name = name ?: UNDEFINED_VALUE,
-        id = if (name == "unknown") {
-            0
-        } else {
-            try {
-                url?.substring(url.lastIndexOf('/') + 1)?.toInt() ?: 0
-            } catch (e: NumberFormatException) {
-                0
-            }
-        }
     )
 }
 
@@ -92,11 +69,11 @@ data class Location(
 fun LocationResponse.parseToLocation(): Location {
     return Location(
         name = name ?: UNDEFINED_VALUE,
-        id = if (url.isNullOrEmpty()) {
+        id = if (name == "unknown") {
             0
         } else {
             try {
-                url.substring(url.lastIndexOf('/') + 1).toInt()
+                url?.substring(url.lastIndexOf('/') + 1)?.toInt() ?: 0
             } catch (e: NumberFormatException) {
                 0
             }

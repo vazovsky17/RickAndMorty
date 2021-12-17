@@ -12,16 +12,10 @@ data class CharacterResponse(
     @SerializedName("species") val species: String?,
     @SerializedName("type") val type: String?,
     @SerializedName("gender") val gender: String?,
-    @SerializedName("origin") val origin: OriginResponse?,
+    @SerializedName("origin") val origin: LocationResponse?,
     @SerializedName("location") val location: LocationResponse?,
     @SerializedName("image") val image: String?,
     @SerializedName("episode") val episode: List<String>?
-) : Parcelable
-
-@Parcelize
-data class OriginResponse(
-    @SerializedName("name") val name: String?,
-    @SerializedName("url") val url: String?,
 ) : Parcelable
 
 @Parcelize

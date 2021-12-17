@@ -62,6 +62,11 @@ class CharacterListFragment : BaseFragment(R.layout.fragment_character_list) {
     }
 
     private fun configureToolbar() = with(binding.toolbar) {
+        setNavigationOnClickListener {
+            findNavController().navigate(
+                CharacterListFragmentDirections.actionCharacterListFragmentToCharacterFilterFragment()
+            )
+        }
         setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.menu_characters -> true

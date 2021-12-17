@@ -2,6 +2,7 @@ package app.vazovsky.rick_and_morty.data.repository
 
 import app.vazovsky.rick_and_morty.data.db.AppDatabase
 import app.vazovsky.rick_and_morty.data.db.entity.CharacterEntity
+import app.vazovsky.rick_and_morty.data.db.entity.Location
 import app.vazovsky.rick_and_morty.data.model.responses.CharacterResponse
 import app.vazovsky.rick_and_morty.data.remote.ApiService
 import kotlinx.coroutines.flow.Flow
@@ -18,4 +19,11 @@ class CharacterRepository @Inject constructor(
     suspend fun searchCharacters(search: String): List<CharacterEntity> = appDatabase.getCharacterDao().searchCharacters(search)
 
     fun getAllCharacters(): Flow<List<CharacterEntity>> = appDatabase.getCharacterDao().getAllCharacters()
+
+    /** Query Filter */
+    suspend fun getStatusList(): List<String> = appDatabase.getCharacterDao().getStatusList()
+    suspend fun getSpeciesList(): List<String> = appDatabase.getCharacterDao().getSpeciesList()
+    suspend fun getTypeList(): List<String> = appDatabase.getCharacterDao().getTypeList()
+    suspend fun getGenderList(): List<String> = appDatabase.getCharacterDao().getGenderList()
+    suspend fun getLocationList(): List<Location> = appDatabase.getCharacterDao().getLocationList()
 }

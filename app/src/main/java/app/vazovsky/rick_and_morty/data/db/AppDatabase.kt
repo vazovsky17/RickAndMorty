@@ -11,12 +11,10 @@ import app.vazovsky.rick_and_morty.data.db.entity.EpisodeEntity
 import app.vazovsky.rick_and_morty.data.db.entity.LocationEntity
 import app.vazovsky.rick_and_morty.data.db.entity.converters.ListIntConverter
 import app.vazovsky.rick_and_morty.data.db.entity.converters.LocationConverter
-import app.vazovsky.rick_and_morty.data.db.entity.converters.OriginConverter
 
 @TypeConverters(
     ListIntConverter::class,
-    LocationConverter::class,
-    OriginConverter::class,
+    LocationConverter::class
 )
 @Database(
     entities = [

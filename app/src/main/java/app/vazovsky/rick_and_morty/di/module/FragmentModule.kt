@@ -1,6 +1,7 @@
 package app.vazovsky.rick_and_morty.di.module
 
 import app.vazovsky.rick_and_morty.presentation.character.detail.CharacterDetailFragment
+import app.vazovsky.rick_and_morty.presentation.character.filter.CharacterFilterFragment
 import app.vazovsky.rick_and_morty.presentation.character.list.CharacterListFragment
 import app.vazovsky.rick_and_morty.presentation.episode.detail.EpisodeDetailFragment
 import app.vazovsky.rick_and_morty.presentation.episode.list.EpisodeListFragment
@@ -23,6 +24,9 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun characterListFragment(): CharacterListFragment
+
+    @ContributesAndroidInjector
+    abstract fun characterFilterFragment(): CharacterFilterFragment
 
     /** EPISODE */
     @ContributesAndroidInjector

@@ -12,10 +12,21 @@
     <string name="title_characters">Characters</string>
     <string name="title_episodes">Episodes</string>
     <string name="title_locations">Locations</string>
+    <string name="menu_search">Search</string>
 
     <!-- Progress -->
     <string name="loading_characters">Loading Characters 0%</string>
     <string name="loading_episodes">Loading Episodes 0%</string>
     <string name="loading_locations">Loading Location 0%</string>
-    <string name="menu_search">Search</string>
+
+    <!-- Filters -->
+    <string name="button_filter_apply">Apply</string>
+    <string name="text_view_filters">Filters</string>
+    <string name="text_view_filter_species">Species</string>
+    <string name="text_view_filter_status">Status</string>
+    <string name="text_view_filter_gender">Gender</string>
+    <string name="text_view_filter_type">Type</string>
+    <string name="text_view_filter_origin">Origin</string>
+    <string name="text_view_filter_location">Location</string>
+    <string name="text_view_filter_episodes">Episodes</string>
 </resources>

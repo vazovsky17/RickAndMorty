@@ -9,7 +9,6 @@ import app.vazovsky.rick_and_morty.data.db.entity.LocationEntity
 import app.vazovsky.rick_and_morty.data.model.State
 import app.vazovsky.rick_and_morty.data.repository.EpisodeRepository
 import app.vazovsky.rick_and_morty.data.repository.LocationRepository
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

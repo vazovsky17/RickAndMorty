@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_characterListFragment_to_episodeListFragment"
             app:destination="@id/episodeListFragment" />
+        <action
+            android:id="@+id/action_characterListFragment_to_characterFilterFragment"
+            app:destination="@id/characterFilterFragment" />
     </fragment>
 
     <fragment
@@ -121,6 +124,10 @@
                 app:argType="app.vazovsky.rick_and_morty.data.db.entity.CharacterEntity" />
         </action>
     </fragment>
+    <fragment
+        android:id="@+id/characterFilterFragment"
+        android:name="app.vazovsky.rick_and_morty.presentation.character.filter.CharacterFilterFragment"
+        android:label="CharacterFilterFragment" />
 
 
 </navigation>

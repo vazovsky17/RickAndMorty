@@ -47,16 +47,6 @@ class EpisodeDetailFragment : BaseFragment(R.layout.fragment_episode_detail) {
         }
     }
 
-    private fun configureViews() = with(binding) {
-        toolbar.title = episode.name
-        toolbar.setNavigationOnClickListener {
-            findNavController().popBackStack()
-        }
-        textViewEpisodeId.text = "id: #${episode.id}"
-        textViewEpisodeEpisodeCode.text = "episode: ${episode.episode}"
-        textViewEpisodeAirDate.text = "air date: ${episode.airDate}"
-    }
-
     private fun configureRecyclerView() {
         characterAdapter.onItemClick = { character ->
             findNavController().navigate(
@@ -68,5 +58,15 @@ class EpisodeDetailFragment : BaseFragment(R.layout.fragment_episode_detail) {
             adapter = characterAdapter
             layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
         }
+    }
+
+    private fun configureViews() = with(binding) {
+        toolbar.title = episode.name
+        toolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+        textViewEpisodeId.text = "id: #${episode.id}"
+        textViewEpisodeEpisodeCode.text = "episode: ${episode.episode}"
+        textViewEpisodeAirDate.text = "air date: ${episode.airDate}"
     }
 }

@@ -3,6 +3,7 @@ package app.vazovsky.rick_and_morty.di.module
 import androidx.lifecycle.ViewModel
 import app.vazovsky.rick_and_morty.di.util.ViewModelKey
 import app.vazovsky.rick_and_morty.presentation.character.detail.CharacterDetailViewModel
+import app.vazovsky.rick_and_morty.presentation.character.filter.CharacterFilterViewModel
 import app.vazovsky.rick_and_morty.presentation.character.list.CharacterListViewModel
 import app.vazovsky.rick_and_morty.presentation.episode.detail.EpisodeDetailViewModel
 import app.vazovsky.rick_and_morty.presentation.episode.list.EpisodeListViewModel
@@ -31,7 +32,12 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(CharacterListViewModel::class)
-    abstract fun characterListViewModel(viewModelCharacter: CharacterListViewModel): ViewModel
+    abstract fun characterListViewModel(viewModel: CharacterListViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(CharacterFilterViewModel::class)
+    abstract fun characterFilterViewModel(viewModel: CharacterFilterViewModel): ViewModel
 
     /** EPISODE */
     @Binds

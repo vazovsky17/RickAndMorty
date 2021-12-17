@@ -47,16 +47,6 @@ class LocationDetailFragment : BaseFragment(R.layout.fragment_location_detail) {
         }
     }
 
-    private fun configureViews() = with(binding) {
-        toolbar.title = location.name
-        toolbar.setNavigationOnClickListener {
-            findNavController().popBackStack()
-        }
-        textViewLocationId.text = "id: #${location.id}"
-        textViewLocationType.text = "type: ${location.type}"
-        textViewLocationDimension.text = "dimension: ${location.dimension}"
-    }
-
     private fun configureRecyclerView() {
         residentAdapter.onItemClick = { resident ->
             findNavController().navigate(
@@ -68,5 +58,15 @@ class LocationDetailFragment : BaseFragment(R.layout.fragment_location_detail) {
             adapter = residentAdapter
             layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
         }
+    }
+
+    private fun configureViews() = with(binding) {
+        toolbar.title = location.name
+        toolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+        textViewLocationId.text = "id: #${location.id}"
+        textViewLocationType.text = "type: ${location.type}"
+        textViewLocationDimension.text = "dimension: ${location.dimension}"
     }
 }
