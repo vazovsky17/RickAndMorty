@@ -1,8 +1,10 @@
 package app.vazovsky.rick_and_morty.presentation.character.list
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import app.vazovsky.rick_and_morty.R
@@ -43,7 +45,6 @@ class CharacterListFragment : BaseFragment(R.layout.fragment_character_list) {
                 val items = (state as State.Data<List<CharacterEntity>>).data
                 characterAdapter.setItems(items)
             }
-
         }
     }
 
@@ -76,8 +77,26 @@ class CharacterListFragment : BaseFragment(R.layout.fragment_character_list) {
                     )
                     true
                 }
+                R.id.menu_search -> {
+                    searchCharacter(item.actionView as SearchView)
+                    true
+                }
                 else -> false
             }
         }
+    }
+
+    private fun searchCharacter(searchView: SearchView) {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                viewModel.searchCharacters(query)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                viewModel.searchCharacters(newText)
+                return false
+            }
+        })
     }
 }

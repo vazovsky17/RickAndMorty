@@ -19,9 +19,6 @@ class EpisodeListViewModel @Inject constructor(
     private val _stateLiveData = MutableLiveData<State<List<EpisodeEntity>>>()
     val stateLiveData: LiveData<State<List<EpisodeEntity>>> = _stateLiveData
 
-    private val _episodesLiveData = MutableLiveData<List<EpisodeEntity>>()
-    val episodesLiveData: LiveData<List<EpisodeEntity>> = _episodesLiveData
-
     fun loadEpisodes() {
         viewModelScope.launch {
             _stateLiveData.postValue(State.Loading())
@@ -31,15 +28,6 @@ class EpisodeListViewModel @Inject constructor(
                 }
             } catch (e: Exception) {
                 _stateLiveData.postValue(State.Error(e))
-            }
-        }
-    }
-
-
-    fun subscribeToEpisodes(context: Context) {
-        viewModelScope.launch {
-            repository.getAllEpisodes().collect {
-                _episodesLiveData.postValue(it)
             }
         }
     }

@@ -12,12 +12,13 @@ import kotlinx.coroutines.flow.Flow
 interface EpisodeDao {
     companion object {
         const val EPISODE_TABLE_NAME = "episodes"
+        const val COLUMN_ID = "id"
     }
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertEpisode(episode: EpisodeEntity)
 
-    @Query("SELECT * FROM $EPISODE_TABLE_NAME WHERE id in (:ids)")
+    @Query("SELECT * FROM $EPISODE_TABLE_NAME WHERE $COLUMN_ID in (:ids)")
     fun getEpisodesByIds(ids: List<Int>): Flow<List<EpisodeEntity>>
 
     @Query("SELECT * FROM $EPISODE_TABLE_NAME")

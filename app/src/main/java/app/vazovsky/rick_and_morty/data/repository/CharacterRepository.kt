@@ -18,4 +18,5 @@ class CharacterRepository @Inject constructor(
 
     fun getAllCharacters(): Flow<List<CharacterEntity>> = appDatabase.getCharacterDao().getAllCharacters()
     fun getCharactersByIds(ids: List<Int>): Flow<List<CharacterEntity>> = appDatabase.getCharacterDao().getCharactersByIds(ids)
+    fun searchCharacters(search: String): Flow<List<CharacterEntity>> = appDatabase.getCharacterDao().searchCharacters(search)
 }

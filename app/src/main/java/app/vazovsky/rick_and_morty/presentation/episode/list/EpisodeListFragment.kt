@@ -22,7 +22,6 @@ class EpisodeListFragment : BaseFragment(R.layout.fragment_episode_list) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.loadEpisodes()
-        viewModel.subscribeToEpisodes(requireContext())
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,9 +36,6 @@ class EpisodeListFragment : BaseFragment(R.layout.fragment_episode_list) {
     }
 
     private fun setViewModelObservers() = with(viewModel) {
-        episodesLiveData.observe(viewLifecycleOwner) { list ->
-            episodeAdapter.setItems(list)
-        }
         stateLiveData.observe(viewLifecycleOwner) { state ->
             binding.apply {
                 customViewFlipper.setState(state)

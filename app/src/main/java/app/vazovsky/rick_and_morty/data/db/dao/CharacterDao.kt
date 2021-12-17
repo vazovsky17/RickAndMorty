@@ -11,14 +11,19 @@ import kotlinx.coroutines.flow.Flow
 interface CharacterDao {
     companion object {
         const val CHARACTER_TABLE_NAME = "characters"
+        const val COLUMN_ID = "id"
+        const val COLUMN_NAME = "name"
     }
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCharacter(character: CharacterEntity)
 
-    @Query("SELECT * FROM $CHARACTER_TABLE_NAME WHERE id in (:ids)")
+    @Query("SELECT * FROM $CHARACTER_TABLE_NAME WHERE $COLUMN_ID in (:ids)")
     fun getCharactersByIds(ids: List<Int>): Flow<List<CharacterEntity>>
 
     @Query("SELECT * FROM $CHARACTER_TABLE_NAME")
     fun getAllCharacters(): Flow<List<CharacterEntity>>
+
+    @Query("SELECT * FROM $CHARACTER_TABLE_NAME WHERE $COLUMN_NAME LIKE  '%' || :search || '%'")
+    fun searchCharacters(search: String): Flow<List<CharacterEntity>>
 }

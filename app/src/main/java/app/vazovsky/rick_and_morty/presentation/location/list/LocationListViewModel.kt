@@ -20,9 +20,6 @@ class LocationListViewModel @Inject constructor(
     private val _stateLiveData = MutableLiveData<State<List<LocationEntity>>>()
     val stateLiveData: LiveData<State<List<LocationEntity>>> = _stateLiveData
 
-    private val _locationsLiveData = MutableLiveData<List<LocationEntity>>()
-    val locationsLiveData: LiveData<List<LocationEntity>> = _locationsLiveData
-
     fun loadLocations() {
         viewModelScope.launch {
             _stateLiveData.postValue(State.Loading())
@@ -32,14 +29,6 @@ class LocationListViewModel @Inject constructor(
                 }
             } catch (e: Exception) {
                 _stateLiveData.postValue(State.Error(e))
-            }
-        }
-    }
-
-    fun subscribeToLocations(context: Context) {
-        viewModelScope.launch {
-            repository.getAllLocations().collect {
-                _locationsLiveData.postValue(it)
             }
         }
     }

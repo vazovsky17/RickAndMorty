@@ -12,12 +12,13 @@ import kotlinx.coroutines.flow.Flow
 interface LocationDao {
     companion object {
         const val LOCATION_TABLE_NAME = "locations"
+        const val COLUMN_ID = "id"
     }
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertLocation(location: LocationEntity)
 
-    @Query("SELECT * FROM $LOCATION_TABLE_NAME WHERE id == (:ids) LIMIT 1")
+    @Query("SELECT * FROM $LOCATION_TABLE_NAME WHERE $COLUMN_ID == (:ids) LIMIT 1")
     suspend fun getLocationsByIds(ids: Int): List<LocationEntity>
 
     @Query("SELECT * FROM $LOCATION_TABLE_NAME")

@@ -21,7 +21,6 @@ class LocationListFragment : BaseFragment(R.layout.fragment_location_list) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.loadLocations()
-        viewModel.subscribeToLocations(requireContext())
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,9 +36,6 @@ class LocationListFragment : BaseFragment(R.layout.fragment_location_list) {
     }
 
     private fun setViewModelObservers() = with(viewModel) {
-        locationsLiveData.observe(viewLifecycleOwner) { list ->
-            locationAdapter.setItems(list)
-        }
         stateLiveData.observe(viewLifecycleOwner) { state ->
             binding.apply {
                 customViewFlipper.setState(state)

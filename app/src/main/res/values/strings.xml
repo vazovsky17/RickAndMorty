@@ -17,4 +17,5 @@
     <string name="loading_characters">Loading Characters 0%</string>
     <string name="loading_episodes">Loading Episodes 0%</string>
     <string name="loading_locations">Loading Location 0%</string>
+    <string name="menu_search">Search</string>
 </resources>

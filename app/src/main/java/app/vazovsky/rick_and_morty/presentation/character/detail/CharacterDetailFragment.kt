@@ -110,8 +110,8 @@ class CharacterDetailFragment : BaseFragment(R.layout.fragment_character_detail)
         textViewCharacterStatus.text = "status: ${character.status}"
         textViewCharacterType.text = "type: ${if (character.type.isEmpty()) "standard" else character.type}"
         textViewCharacterGender.text = "gender: ${character.gender}"
-        textViewCharacterOrigin.text = "origin: ${character.origin.name}"
-        textViewCharacterLocation.text = "location: ${character.location.name}"
+        textViewCharacterOrigin.text = "origin:\n${character.origin.name}"
+        textViewCharacterLocation.text = "location:\n${character.location.name}"
 
         toolbar.setNavigationOnClickListener {
             findNavController().popBackStack()
